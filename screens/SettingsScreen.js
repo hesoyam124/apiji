@@ -39,25 +39,43 @@ export function SettingsScreen({ route, navigation }) {
   }
   return (
 
-      <View style={styles.container}>
+    <View style={styles.container}>
 
       <View>
-          {isLoading ? (
-            <ActivityIndicator />
-          ) : (<FlatList
-
-            data={data}
-            keyExtractor={({ id }, index) => id}
-            renderItem={({ item }) => (
-              <Text> {item.first_name} , {item.last_name}, {item.email} </Text>
-            )}
-          />)
-          }
-        </View>
-
 
 
       </View>
+
+
+      <View>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (<FlatList
+
+          data={data}
+          keyExtractor={({ id }, index) => id}
+          renderItem={({ item }) => (
+
+            <View style={styles.itemWrap}>
+              <View style={styles.image}>
+                <Image
+                  style={styles.tinyLogo}
+                  source={{
+                    uri: '$ {item.avatar}',
+                  }}
+                />
+
+              </View>
+              <Text> {item.first_name} , {item.last_name}, {item.email} </Text>
+            </View>
+          )}
+        />)
+        }
+      </View>
+
+
+
+    </View>
 
   );
 }
